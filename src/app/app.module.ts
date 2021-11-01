@@ -17,6 +17,7 @@ import { ManagerItemDetailComponent } from './post-manager/manager-item-detail/m
 import { FormsModule } from '@angular/forms';
 import { FooterComponent } from './footer/footer.component';
 import { PostSearchComponent } from './posts-list/post-search/post-search.component';
+import { PostSortComponent } from './posts-list/post-sort/post-sort.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { PostSearchComponent } from './posts-list/post-search/post-search.compon
     ManagerItemComponent,
     ManagerItemDetailComponent,
     FooterComponent,
-    PostSearchComponent
+    PostSearchComponent,
+    PostSortComponent
   ],
   imports: [
     BrowserModule,
