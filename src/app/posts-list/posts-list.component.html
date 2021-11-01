@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="columns">
+    <div class="column">
+      <app-post-search
+        (searchcriteria)="searchProvider($event)"
+      ></app-post-search>
+    </div>
+    <div class="column">
+      <app-post-sort (sorting)="sortingService($event)"></app-post-sort>
+    </div>
+    <app-post-item *ngFor="let post of posts" [post]="post"></app-post-item>
+  </div>
+</div>

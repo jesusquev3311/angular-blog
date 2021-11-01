@@ -1,0 +1,31 @@
+<form>
+  <div class="field">
+    <label class="label">Name</label>
+    <div class="control">
+      <input class="input" type="text" placeholder="Comment Name" #commentName>
+    </div>
+  </div>
+  
+  <div class="field">
+    <label class="label">Email</label>
+    <div class="control">
+      <input class="input" type="email" placeholder="Email" #commentEmail>
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="label">Message</label>
+    <div class="control">
+      <textarea class="textarea" placeholder="Textarea" #commentBody></textarea>
+    </div>
+  </div>
+  
+  <div class="field is-grouped">
+    <div class="control">
+      <button 
+      class="button is-primary"
+      (click)="addCommentAction({ postId, id: null,name: commentName.value, email: commentEmail.value, body: commentBody.value })"
+      >Submit</button>
+    </div>
+  </div>
+</form>

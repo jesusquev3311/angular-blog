@@ -1,0 +1,22 @@
+<div class="column">
+  <div class="card">
+      <div class="card-content">
+        <div class="media">
+          <div class="media-content">
+            <p class="title is-5">{{ post?.title }}</p>
+            <p class="subtitle is-5">
+                <span><strong>ID:</strong>{{ post?.id }}</span>
+            </p>
+          </div>
+        </div>
+    
+        <div class="content">
+          <div class="buttons are-small">
+            <a [routerLink]="['/post-manager', post.id]" class="button is-primary">Edit</a>
+            <button (click)="delete(index, post.id)" type="button" class="button is-danger">Delete</button>
+            <a [routerLink]="['/posts', post.id]" class="button is-info">Details</a>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>

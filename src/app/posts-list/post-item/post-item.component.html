@@ -1,0 +1,32 @@
+<div class="column p-4">
+  <div class="card mb-5 has-border">
+    <a [routerLink]="['/posts', post.id]">
+      <div class="card-image">
+          <figure class="image">
+            <img
+              src="https://assets.materialup.com/uploads/c83a9663-be0b-4397-b1af-67f520e44ef1/preview.png"
+              alt="Placeholder image"
+            />
+          </figure>
+      </div>
+      <hr>
+      <div class="card-content pb-6">
+        <div class="media">
+          <div class="media-content">
+            <p class="title is-4">{{ post?.title }}</p>
+            <p class="subtitle is-5">
+              <span>@{{ user?.username }}</span> -
+          
+              <span>{{ user?.address.city }}</span>
+            </p>
+          </div>
+        </div>
+    
+        <div class="content has-text-black">
+            {{post.body}}
+					</div>
+					<button class="button is-black mt-4 is-mmediun">Read more</button>
+      </div>
+    </a>
+  </div>
+</div>
