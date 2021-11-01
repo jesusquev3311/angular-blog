@@ -15,6 +15,7 @@ import { PostManagerComponent } from './post-manager/post-manager.component';
 import { ManagerItemComponent } from './post-manager/manager-item/manager-item.component';
 import { ManagerItemDetailComponent } from './post-manager/manager-item-detail/manager-item-detail.component';
 import { FormsModule } from '@angular/forms';
+import { FooterComponent } from './footer/footer.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { FormsModule } from '@angular/forms';
     HeaderComponent,
     PostManagerComponent,
     ManagerItemComponent,
-    ManagerItemDetailComponent
+    ManagerItemDetailComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

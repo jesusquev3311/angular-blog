@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PostsService } from '../services/posts.service';
 import { Post } from '../shared/post/post.model';
-import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-post-manager',
@@ -10,8 +9,6 @@ import { Subject } from 'rxjs';
 })
 export class PostManagerComponent implements OnInit {
   posts: Post[] = [];
-  postsChanged = new Subject<Post[]>();
-
 
   constructor(private PostsService: PostsService) {}
 
