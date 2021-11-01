@@ -6,25 +6,28 @@
           <figure>
             <img
               src="https://assets.materialup.com/uploads/c83a9663-be0b-4397-b1af-67f520e44ef1/preview.png"
-              alt="Placeholder image">
+              alt="Placeholder image"
+            />
           </figure>
         </div>
         <div class="content-body p-4">
           <h1 class="title is-3">
-            {{post?.title}}
+            {{ post?.title }}
           </h1>
           <p>{{ post?.body }}</p>
         </div>
       </div>
     </div>
-
   </div>
   <div class="columns is-mobile">
     <div class="column">
       <section class="hero is-link">
         <div class="hero-body">
           <h4 class="title is-4">Leave your Comment:</h4>
-          <app-comments-editor [postId]="post?.id"></app-comments-editor>
+          <app-comments-editor
+            [postId]="post?.id"
+            (addComment)="addComment($event)"
+          ></app-comments-editor>
         </div>
       </section>
     </div>
@@ -33,7 +36,10 @@
   <div class="columns is-mobile">
     <div class="column">
       <h4 class="title is-4">Comments</h4>
-      <app-comments *ngFor="let comment of comments" [comment]="comment"></app-comments>
+      <app-comments
+        *ngFor="let comment of comments"
+        [comment]="comment"
+      ></app-comments>
     </div>
   </div>
 </div>
