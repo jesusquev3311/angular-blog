@@ -1,1 +1,26 @@
-<p>post-item works!</p>
+<div class="column">
+  <div class="card">
+    <a [routerLink]="['/posts', post.id]">
+      <div class="card-image">
+          <figure class="image">
+            <img
+              src="https://assets.materialup.com/uploads/c83a9663-be0b-4397-b1af-67f520e44ef1/preview.png"
+              alt="Placeholder image"
+            />
+          </figure>
+      </div>
+      <hr>
+      <div class="card-content">
+        <div class="media">
+          <div class="media-content">
+            <p class="title is-4">{{ post.title }}</p>
+          </div>
+        </div>
+    
+        <div class="content">
+            {{post.body}}
+        </div>
+      </div>
+    </a>
+  </div>
+</div>
