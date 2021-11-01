@@ -9,12 +9,17 @@ import { User } from "src/app/shared/post/user.model";
 })
 export class PostItemComponent implements OnInit {
   @Input() post: Post;
-  @Input() user: User;
+  user: User;
 
 
-  constructor() {}
+  constructor(private Users: UsersService) {}
 
   ngOnInit(): void {
+    this.userProvider(this.post.userId);
+  }
+
+  userProvider(id: number){
+    this.Users.getUser(id).subscribe(user => this.user = user);
   }
 
 }

@@ -1,6 +1,5 @@
 import { Component, OnInit } from "@angular/core";
 import { PostsService } from "../services/posts.service";
-import { UsersService } from "../services/users.service";
 import { Post } from "../shared/post/post.model";
 
 @Component({
@@ -10,7 +9,7 @@ import { Post } from "../shared/post/post.model";
 })
 export class PostsListComponent implements OnInit {
   posts: Post[] = [];
-  constructor(private PostsService: PostsService, private UserService: UsersService) {}
+  constructor(private PostsService: PostsService) {}
 
   ngOnInit(): void {
     this.dataProvider();
@@ -18,9 +17,5 @@ export class PostsListComponent implements OnInit {
 
   dataProvider() {
     return this.PostsService.getAll().subscribe((posts) => (this.posts = posts));
-  }
-  userProvider(id: number) {
-    const user = this.UserService.getUser(id);
-    return user;
   }
 }

@@ -11,6 +11,9 @@ export class UsersService {
 
   constructor(private http: HttpClient) {}
 
+  getAll() {
+    return this.http.get<User[]>(this.url).pipe(map((users) => users));
+  }
   getUser(id) {
     return this.http.get<User>(`${this.url}/${id}`).pipe(map((user) => user));
   }

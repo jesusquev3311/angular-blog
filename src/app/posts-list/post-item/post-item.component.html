@@ -13,7 +13,22 @@
       <div class="card-content">
         <div class="media">
           <div class="media-content">
-            <p class="title is-4">{{ post.title }}</p>
+            <p class="title is-4">{{ post?.title }}</p>
+            <p class="subtitle is-5">
+              <span class="icon-text">
+                <span class="icon has-text-link">
+                  <i class="fas fa-home"></i>
+                </span>
+                <span>@{{ user?.username }}</span>
+              </span>
+              - 
+              <span class="icon-text">
+                <span class="icon has-text-link">
+                  <i class="fas fa-map-pin"></i>
+                </span>
+                <span>{{ user?.address.city }}</span>
+              </span>
+            </p>
           </div>
         </div>
     

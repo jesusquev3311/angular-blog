@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="columns is-mobile">
+    <div class="column">
+      <h1 class="title is-3">Posts Editor</h1>
+    </div>
+  </div>
+  <div class="column is-mobile">
+    <form>
+      <div class="field">
+        <label class="label">Title</label>
+        <div class="control">
+          <input class="input" type="text" placeholder="Title" [value]="post?.title" #title>
+        </div>
+      </div>
+      
+      <div class="field">
+        <label class="label">UserId</label>
+        <div class="control">
+          <input class="input" type="text" placeholder="User ID" [value]="post?.userId" #userId>
+        </div>
+      </div>
+      
+      <div class="field">
+        <label class="label">Content</label>
+        <div class="control">
+          <textarea class="textarea" placeholder="Textarea" [value]="post?.body" #body></textarea>
+        </div>
+      </div>
+      <br>
+      <div class="field is-grouped">
+        <div class="control">
+          <button type="submit" class="button is-link" (click)="update({id: post?.id, title: title.value, userId: userId.value, body: body.value})">Submit</button>
+        </div>
+        <div class="control">
+          <button [routerLink]="['/post-manager']" class="button is-link is-light">Cancel</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Post } from '../shared/post/post.model';
-import { map } from "rxjs/operators";
+import { catchError, map } from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +19,16 @@ export class PostsService {
     return this.http.get<Post>(`${this.url}/${id}`).pipe(map(post => post));
   }
 
+  deleteById(id: number){
+    return this.http.delete(`${this.url}/${id}`);
+  }
+
+  update(item: Post){
+    return this.http.patch<Post>(`${this.url}/${item.id}`, item).pipe(map((resp)=> console.log(resp)));
+  }
+  create(item: Post){
+    return this.http.post<Post>(this.url, item);
+  }
 
 
 }

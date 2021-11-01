@@ -16,9 +16,9 @@ export class PostDetailComponent implements OnInit {
   constructor(private route: ActivatedRoute, private router: Router, private Posts: PostsService, private User: UsersService) { }
 
   ngOnInit(): void {
-    //const id = this.route.snapshot.paramMap.get("id");
+    const id = this.route.snapshot.paramMap.get("id");
     
-    this.detailProvider(this.route.snapshot.paramMap.get("id"));
+    this.detailProvider(id);
   }
 
   detailProvider(id: string){

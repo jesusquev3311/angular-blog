@@ -11,6 +11,10 @@ import { PostDetailComponent } from './posts-list/post-detail/post-detail.compon
 import { CommentsComponent } from './posts-list/post-detail/comments/comments.component';
 import { CommentsEditorComponent } from './posts-list/post-detail/comments-editor/comments-editor.component';
 import { HeaderComponent } from './header/header.component';
+import { PostManagerComponent } from './post-manager/post-manager.component';
+import { ManagerItemComponent } from './post-manager/manager-item/manager-item.component';
+import { ManagerItemDetailComponent } from './post-manager/manager-item-detail/manager-item-detail.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -21,12 +25,16 @@ import { HeaderComponent } from './header/header.component';
     PostDetailComponent,
     CommentsComponent,
     CommentsEditorComponent,
-    HeaderComponent
+    HeaderComponent,
+    PostManagerComponent,
+    ManagerItemComponent,
+    ManagerItemDetailComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule, 
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
