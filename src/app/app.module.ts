@@ -16,6 +16,7 @@ import { ManagerItemComponent } from './post-manager/manager-item/manager-item.c
 import { ManagerItemDetailComponent } from './post-manager/manager-item-detail/manager-item-detail.component';
 import { FormsModule } from '@angular/forms';
 import { FooterComponent } from './footer/footer.component';
+import { PostSearchComponent } from './posts-list/post-search/post-search.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { FooterComponent } from './footer/footer.component';
     PostManagerComponent,
     ManagerItemComponent,
     ManagerItemDetailComponent,
-    FooterComponent
+    FooterComponent,
+    PostSearchComponent
   ],
   imports: [
     BrowserModule,

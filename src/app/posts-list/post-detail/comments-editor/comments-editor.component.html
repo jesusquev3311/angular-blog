@@ -2,37 +2,30 @@
   <div class="field">
     <label class="label">Name</label>
     <div class="control">
-      <input class="input" type="text" placeholder="Text input">
+      <input class="input" type="text" placeholder="Comment Name" #commentName>
     </div>
   </div>
   
   <div class="field">
     <label class="label">Email</label>
-    <div class="control has-icons-left has-icons-right">
-      <input class="input is-danger" type="email" placeholder="Email input" value="hello@">
-      <span class="icon is-small is-left">
-        <i class="fas fa-envelope"></i>
-      </span>
-      <span class="icon is-small is-right">
-        <i class="fas fa-exclamation-triangle"></i>
-      </span>
+    <div class="control">
+      <input class="input" type="email" placeholder="Email" #commentEmail>
     </div>
-    <p class="help is-danger">This email is invalid</p>
   </div>
-  
+
   <div class="field">
     <label class="label">Message</label>
     <div class="control">
-      <textarea class="textarea" placeholder="Textarea"></textarea>
+      <textarea class="textarea" placeholder="Textarea" #commentBody></textarea>
     </div>
   </div>
   
   <div class="field is-grouped">
     <div class="control">
-      <button class="button is-primary">Submit</button>
-    </div>
-    <div class="control">
-      <button class="button is-link is-light">Cancel</button>
+      <button 
+      class="button is-primary"
+      (click)="addCommentAction({ postId, id: null,name: commentName.value, email: commentEmail.value, body: commentBody.value })"
+      >Submit</button>
     </div>
   </div>
 </form>

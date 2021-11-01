@@ -9,6 +9,8 @@ import { Post } from "../shared/post/post.model";
 })
 export class PostsListComponent implements OnInit {
   posts: Post[] = [];
+  searchAcc: Post[] = [];
+
   constructor(private PostsService: PostsService) {}
 
   ngOnInit(): void {
@@ -16,6 +18,26 @@ export class PostsListComponent implements OnInit {
   }
 
   dataProvider() {
-    return this.PostsService.getAll().subscribe((posts) => (this.posts = posts));
+    return this.PostsService.getAll().subscribe(
+      (posts: Post[]) => (this.posts = posts)
+    );
+  }
+
+  searchProvider(data: string) {
+    if (data) {
+      this.searchAcc = this.posts;
+
+      const result: Post[] = this.searchAcc.filter((post) => {
+        let arrayelement = post.title.toLowerCase();
+
+        return arrayelement.includes(data);
+      });
+
+      if (result.length) {
+        this.posts = result;
+      }
+    } else {
+      this.dataProvider();
+    }
   }
 }

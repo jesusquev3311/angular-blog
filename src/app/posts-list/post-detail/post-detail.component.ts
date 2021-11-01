@@ -35,9 +35,8 @@ export class PostDetailComponent implements OnInit {
 
   commentsProvider(id:string){
     return this.Comments.getComments().subscribe((comments) => {
-      console.log("before filter: ", comments)
       const filteredComments = comments.filter(({postId})=> +id === +postId);
-      console.log("after Filter: ", filteredComments);
+
       return this.comments =filteredComments;
     });
   }
