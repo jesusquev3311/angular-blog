@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { PostsService } from "../services/posts.service";
 import { Post } from "../shared/post/post.model";
+import sortingProvier from "../shared/utils/utils.js";
 
 @Component({
   selector: "app-posts-list",
@@ -39,5 +40,9 @@ export class PostsListComponent implements OnInit {
     } else {
       this.dataProvider();
     }
+  }
+
+  sortingService(sortType: string) {
+    this.posts = this.posts.sort(sortingProvier(sortType));
   }
 }
