@@ -19,15 +19,13 @@ export class PostsService {
   }
 
   deleteById(id: number) {
-    return this.http
-      .delete(`${this.url}/${id}`)
-      .pipe(map((resp) => console.log(resp)));
+    return this.http.delete(`${this.url}/${id}`).pipe(map((resp) => resp));
   }
 
   update(item: Post) {
     return this.http
       .patch<Post>(`${this.url}/${item.id}`, item)
-      .pipe(map((resp) => console.log(resp)));
+      .pipe(map((resp) => resp));
   }
   create(item: Post) {
     return this.http.post<Post>(this.url, item);
