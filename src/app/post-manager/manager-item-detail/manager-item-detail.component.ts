@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute, Router } from "@angular/router";
+import { ActivatedRoute } from "@angular/router";
+import { NotificationsService } from "src/app/services/notifications.service";
 import { PostsService } from "src/app/services/posts.service";
 import { Post } from "src/app/shared/post/post.model";
 
@@ -12,8 +13,8 @@ export class ManagerItemDetailComponent implements OnInit {
   post: Post;
   constructor(
     private route: ActivatedRoute,
-    private router: Router,
-    private Posts: PostsService
+    private Posts: PostsService,
+    private notify: NotificationsService
   ) {}
 
   ngOnInit(): void {
@@ -25,7 +26,10 @@ export class ManagerItemDetailComponent implements OnInit {
   detailProvider(id: string) {
     return this.Posts.getById(id).subscribe(
       (post) => (this.post = post),
-      (err) => console.error(err)
+      (err) => {
+        console.error(err);
+        this.notify.error("something went wrong");
+      }
     );
   }
 
@@ -33,11 +37,24 @@ export class ManagerItemDetailComponent implements OnInit {
     if (post.id) {
       return this.Posts.update(post).subscribe(
         (resp) => {
-          resp;
+          this.notify.success("Updated Successfully");
+          return resp;
         },
-        (err) => err
+        (err) => {
+          console.error(err);
+          this.notify.error("Something went wrong");
+        }
       );
     }
-    return this.Posts.create(post);
+    return this.Posts.create(post).subscribe(
+      (resp) => {
+        this.notify.success("Created Successfully");
+        return resp;
+      },
+      (err) => {
+        console.error(err);
+        this.notify.error("Something went wrong");
+      }
+    );
   }
 }
