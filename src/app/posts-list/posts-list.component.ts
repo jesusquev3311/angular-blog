@@ -4,7 +4,7 @@ import { PostsService } from "../services/posts.service";
 import { UsersService } from "../services/users.service";
 import { Post } from "../shared/post/post.model";
 import { User } from "../shared/post/user.model";
-import { sortProvider } from "../shared/utils/utils.js";
+import sortProvider from "../shared/utils/utils.js";
 
 @Component({
   selector: "app-posts-list",
