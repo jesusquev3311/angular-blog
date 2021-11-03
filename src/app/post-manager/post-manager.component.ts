@@ -20,9 +20,7 @@ export class PostManagerComponent implements OnInit {
 
   dataProvider() {
     return this.PostsService.getAll().subscribe(
-      (posts) => {
-        this.posts = posts;
-      },
+      (posts) => (this.posts = posts),
       (err) => console.error(err)
     );
   }
