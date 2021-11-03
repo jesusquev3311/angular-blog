@@ -20,7 +20,10 @@ export class PostManagerComponent implements OnInit {
 
   dataProvider() {
     return this.PostsService.getAll().subscribe(
-      (posts) => (this.posts = posts)
+      (posts) => {
+        this.posts = posts;
+      },
+      (err) => console.error(err)
     );
   }
 
@@ -30,9 +33,12 @@ export class PostManagerComponent implements OnInit {
         As the API doesn't really delete the element, 
         I've simulated the removel from the posts array
       */
-    this.PostsService.deleteById(id).subscribe((resp) => {
-      console.log(resp);
-      this.posts.splice(index, 1);
-    });
+    this.PostsService.deleteById(id).subscribe(
+      (resp) => {
+        console.log(resp);
+        this.posts.splice(index, 1);
+      },
+      (err) => console.error(err)
+    );
   }
 }
