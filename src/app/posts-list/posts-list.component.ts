@@ -1,8 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 import { NotificationsService } from "../services/notifications.service";
 import { PostsService } from "../services/posts.service";
+import { UsersService } from "../services/users.service";
 import { Post } from "../shared/post/post.model";
-import sortingProvier from "../shared/utils/utils.js";
+import { User } from "../shared/post/user.model";
+import { sortProvider } from "../shared/utils/utils.js";
 
 @Component({
   selector: "app-posts-list",
@@ -12,14 +14,18 @@ import sortingProvier from "../shared/utils/utils.js";
 export class PostsListComponent implements OnInit {
   posts: Post[] = [];
   searchAcc: Post[] = [];
+  users: User[] = [];
+  user: User;
 
   constructor(
     private PostsService: PostsService,
+    private UsersService: UsersService,
     private notify: NotificationsService
   ) {}
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.dataProvider();
+    this.usersProvider();
   }
 
   dataProvider() {
@@ -27,6 +33,16 @@ export class PostsListComponent implements OnInit {
       (posts: Post[]) => {
         this.posts = posts;
       },
+      (err) => {
+        console.error(err);
+        this.notify.error("Something went wrong");
+      }
+    );
+  }
+
+  async usersProvider() {
+    await this.UsersService.getAll().subscribe(
+      (users) => (this.users = users),
       (err) => {
         console.error(err);
         this.notify.error("Something went wrong");
@@ -53,6 +69,6 @@ export class PostsListComponent implements OnInit {
   }
 
   sortingService(sortType: string) {
-    this.posts = this.posts.sort(sortingProvier(sortType));
+    this.posts = this.posts.sort(sortProvider(sortType));
   }
 }

@@ -1,6 +1,12 @@
-import { Component, Input, OnInit } from "@angular/core";
-import { NotificationsService } from "src/app/services/notifications.service";
-import { UsersService } from "src/app/services/users.service";
+import {
+  AfterContentChecked,
+  Component,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChange,
+  SimpleChanges,
+} from "@angular/core";
 import { Post } from "src/app/shared/post/post.model";
 import { User } from "src/app/shared/post/user.model";
 @Component({
@@ -8,26 +14,25 @@ import { User } from "src/app/shared/post/user.model";
   templateUrl: "./post-item.component.html",
   styleUrls: ["./post-item.component.scss"],
 })
-export class PostItemComponent implements OnInit {
+export class PostItemComponent implements OnInit, OnChanges {
   @Input() post: Post;
+  @Input() users: User[];
   user: User;
 
-  constructor(
-    private Users: UsersService,
-    private notify: NotificationsService
-  ) {}
+  constructor() {}
 
-  ngOnInit(): void {
-    this.userProvider(this.post.userId);
+  ngOnInit() {
+    //console.log(this.users);
+  }
+  ngOnChanges(changes: SimpleChanges) {
+    if (!!changes.users) {
+      this.userProvider(this.users, this.post.userId);
+      console.log(this.users);
+    }
   }
 
-  userProvider(id: number) {
-    this.Users.getUser(id).subscribe(
-      (user) => (this.user = user),
-      (err) => {
-        console.error(err);
-        this.notify.error("Something Went Wrong");
-      }
-    );
+  async userProvider(users: User[], userId: number) {
+    const item = await users.filter((user) => user.id == userId);
+    return (this.user = item[0]);
   }
 }
