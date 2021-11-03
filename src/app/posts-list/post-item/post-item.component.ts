@@ -21,13 +21,11 @@ export class PostItemComponent implements OnInit, OnChanges {
 
   constructor() {}
 
-  ngOnInit() {
-    //console.log(this.users);
-  }
+  ngOnInit() {}
+
   ngOnChanges(changes: SimpleChanges) {
     if (!!changes.users) {
       this.userProvider(this.users, this.post.userId);
-      console.log(this.users);
     }
   }
 
