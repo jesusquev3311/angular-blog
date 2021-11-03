@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { NotificationsService } from "../services/notifications.service";
 import { PostsService } from "../services/posts.service";
 import { Post } from "../shared/post/post.model";
 import sortingProvier from "../shared/utils/utils.js";
@@ -12,7 +13,10 @@ export class PostsListComponent implements OnInit {
   posts: Post[] = [];
   searchAcc: Post[] = [];
 
-  constructor(private PostsService: PostsService) {}
+  constructor(
+    private PostsService: PostsService,
+    private notify: NotificationsService
+  ) {}
 
   ngOnInit(): void {
     this.dataProvider();
@@ -20,7 +24,13 @@ export class PostsListComponent implements OnInit {
 
   dataProvider() {
     return this.PostsService.getAll().subscribe(
-      (posts: Post[]) => (this.posts = posts)
+      (posts: Post[]) => {
+        this.posts = posts;
+      },
+      (err) => {
+        console.error(err);
+        this.notify.error("Something went wrong");
+      }
     );
   }
 

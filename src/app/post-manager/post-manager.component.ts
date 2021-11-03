@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { NotificationsService } from "../services/notifications.service";
 import { PostsService } from "../services/posts.service";
 import { Post } from "../shared/post/post.model";
 
@@ -10,7 +11,10 @@ import { Post } from "../shared/post/post.model";
 export class PostManagerComponent implements OnInit {
   posts: Post[] = [];
 
-  constructor(private PostsService: PostsService) {}
+  constructor(
+    private PostsService: PostsService,
+    private notify: NotificationsService
+  ) {}
 
   ngOnInit(): void {
     if (this.posts.length <= 0) {
@@ -20,8 +24,13 @@ export class PostManagerComponent implements OnInit {
 
   dataProvider() {
     return this.PostsService.getAll().subscribe(
-      (posts) => (this.posts = posts),
-      (err) => console.error(err)
+      (posts) => {
+        this.posts = posts;
+      },
+      (err) => {
+        console.error(err);
+        this.notify.error("Something Went Wrong");
+      }
     );
   }
 
@@ -31,12 +40,18 @@ export class PostManagerComponent implements OnInit {
         As the API doesn't really delete the element, 
         I've simulated the removel from the posts array
       */
-    this.PostsService.deleteById(id).subscribe(
-      (resp) => {
-        console.log(resp);
-        this.posts.splice(index, 1);
-      },
-      (err) => console.error(err)
-    );
+    this.notify.confirm("Do you want to delete this Post?", () => {
+      this.PostsService.deleteById(id).subscribe(
+        (resp) => {
+          this.notify.success("Deleted");
+          this.posts.splice(index, 1);
+          return resp;
+        },
+        (err) => {
+          console.error(err);
+          this.notify.error("Something went wrong");
+        }
+      );
+    });
   }
 }
